@@ -177,11 +177,85 @@
     .arena-links a:hover {
         color: #e0b3ff;
     }
+    pre{
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 300px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: 'Courier New', Courier, monospace;
+        color: #ffffff;
+        line-height: 1.5;
+        text-align: left;
+    }
+    .flexcontainer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .resizeImage {
+        width: 50%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    .resizeImage img {
+        width: 100%;
+        height: auto;
+    }
+    .resizeImage p {
+        text-align: center;
+    }
+    .zoomable-image {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.zoomable-image:hover {
+    transform: scale(1.05);
+}
+
+.zoom-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.zoom-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.zoom-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.zoom-close:hover {
+    color: #bbb;
+}
+
 </style>
 </head>
 <body>
 <div class="top-bar">
-    <h1>4mxSettings</h1>
+    <h1 data-target="home">4mxSettings</h1>
     <div class="logo-bar">
         <a href="https://www.youtube.com/@frimex4mx333" target="_blank" aria-label="YouTube">
             <svg viewBox="0 0 24 24"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.8-1.5-.8-1.9-.9C17.3 2.5 12 2.5 12 2.5h-.1s-5.3 0-8.8.5c-.4 0-1.2.1-1.9.9C.6 4.6.5 6.2.5 6.2S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.6.8 2.3c.7.8 1.6.8 2 1 1.5.1 6.7.5 8.7.5 0 0 5.4 0 8.9-.5.4 0 1.2-.1 1.9-.9.6-.7.8-2.3.8-2.3s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.7 13.8V8.3l5.2 2.7-5.2 2.8z"/></svg>
@@ -204,7 +278,7 @@
         <a href="https://discord.gg/eENwBDkhN7" target="_blank" aria-label="Discord">
             <svg viewBox="0 0 245 240"><path d="M104.4 104.1c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path d="M189.5 20h-134C24.4 20 0 44.5 0 74.3v92.5C0 196.5 24.4 221 55.5 221h113l-5.3-18.6 12.8 11.9 12.1 11.2L245 240V74.3c0-29.8-24.4-54.3-55.5-54.3zM163.7 167s-5-6-9.1-11.4c18.1-5.1 25-16.3 25-16.3-5.7 3.7-11.1 6.3-15.9 8.1-6.9 2.9-13.5 4.8-20 5.9-13.2 2.5-25.2 1.8-35.7-.1-7.8-1.5-14.5-3.6-20.1-5.9-3.1-1.2-6.5-2.8-9.9-4.8-.4-.2-.8-.3-1.2-.5-.3-.2-.5-.3-.8-.5-3.6-2-5.7-3.4-5.7-3.4s6.6 11 24 16c-4.1 5.5-9.2 11.9-9.2 11.9-30.4-.9-41.9-21-41.9-21 0-44.5 19.8-80.6 19.8-80.6 19.8-14.9 38.6-14.5 38.6-14.5l1.4 1.7c-24.8 7.1-36.3 18-36.3 18s3 0 8.1.6c14.7 0 26.5 9 26.5 9 11.2-6.3 26.4-9 42-9 15.6 0 30.8 2.7 42 9 0 0 11.8-9 26.5-9 5 0 8.1-.6 8.1-.6s-11.5-10.9-36.3-18l1-1.7s18.9-.4 38.6 14.5c0 0 19.8 36.1 19.8 80.6 0 0-11.5 20.1-42 21z"/></svg>
         </a>
-        <a href="https://steamcommunity.com" target="_blank" aria-label="Steam">
+        <a href="https://steamcommunity.com/workshop/filedetails/?id=1860635521" target="_blank" aria-label="Steam">
             <svg viewBox="0 0 512 512"><path d="M496 256c0-132.3-107.7-240-240-240S16 123.7 16 256s107.7 240 240 240c65.5 0 124.9-26.4 168.4-69.6l-48.7-18.9c-25.1 21.5-58 34.5-94.7 34.5-78.9 0-143-64.1-143-143 0-7.8.6-15.5 1.8-23l54.3 22.8c3.2 52 47.5 93.2 100.7 93.2 55.1 0 100-44.9 100-100s-44.9-100-100-100c-44.6 0-82.4 29.7-95.3 70.4l-57.8-24.3C172.1 122 210.9 96 256 96c88.4 0 160 71.6 160 160 0 30.5-8.6 59-23.5 83.3l47.9 18.6C488 314.4 496 286.7 496 256z"/></svg>
         </a>
     </div>
@@ -216,15 +290,29 @@
     <button data-target="settings">Settings</button>
     <button data-target="ini">Ini</button>
     <button data-target="boss">Boss Tributes</button>
-    <button data-target="arena">Arena IP</button>
+    <button data-target="arena">réseaux</button>
 </div>
 
 <div id="maps" class="content-section">
-    <div class="section-container">
+    <div class="section-container flexcontainer">
         <script>
+            var Maps=[
+                'LostIsland',
+                'ScorchedEarth',
+                'Gen2',
+                'Gen1',
+                'Extinction',
+                'Valg',
+                'Center',
+                'Rag',
+                'Isl',
+                'fjord'
+            ]
             for(let i=1;i<=10;i++){
-                document.write('<img src="img/file+'+i+'.jpg" class="placeholder" alt="Map '+i+'">');
-                document.write('<p style="animation:fadeIn 0.5s ease-out;">Texte pour Map '+i+'</p>');
+                document.write('<div class="resizeImage">');
+                document.write('<p style="animation:fadeIn 0.5s ease-out;">'+Maps[i-1]+'</p>');
+                document.write('<img src="img/file'+i+'.jpg" class="placeholder" alt="Map '+i+'">');
+                document.write('</div>');
             }
         </script>
     </div>
@@ -234,147 +322,141 @@
     <div class="section-container">
         <div class="mutagen-box">
             <p>
-Astrocetus    99
+<p>Astrocetus    99</p>
+<p>Giganotosaurus    99</p>
+<p>Quetzal    98</p>
+<p>Shadowmane    95</p>
+<p>Managarmr    94</p>
+<p>Therizinosaur    94</p>
+<p>Yutyrannus    94</p>
 
-Giganotosaurus    99
+<p></p>Ankylosaurus    93</p>
 
-Quetzal    98
+<p>Reaper King    93</p>
 
-Shadowmane    95
+<p>Mosasaurus    </p>
 
-Managarmr    94
+<p>Rock Elemental    88</p>
 
-Therizinosaur    94
+<p>Rex    87</p>
 
-Yutyrannus    94
+<p>Tusoteuthis    87</p>
 
-Ankylosaurus    93
+<p>Crystal Wyvern    85</p>
 
-Reaper King    93
+<p>Megalania    85</p>
 
-Mosasaurus    88
+<p>Castoroides    84</p>
 
-Rock Elemental    88
+<p>Otter    84</p>
 
-Rex    87
+<p>Doedicurus    83</p>
 
-Tusoteuthis    87
+<p>Magmasaur    82</p>
 
-Crystal Wyvern    85
+<p>Phoenix    82</p>
 
-Megalania    85
+<p>Rock Drake    82</p>
 
-Castoroides    84
+<p>Voidwyrm    82</p>
 
-Otter    84
+<p>Wyvern    82</p>
 
-Doedicurus    83
+<p>Mantis    79</p>
 
-Magmasaur    82
+<p>Ovis    79</p>
 
-Phoenix    82
+<p>Pteranodon    79</p>
 
-Rock Drake    82
+<p>Basilisk    78</p>
 
-Voidwyrm    82
+<p>Basilosaurus    75</p>
 
-Wyvern    82
+<p>Megachelon    74</p>
 
-Mantis    79
+<p>Gasbags    72</p>
 
-Ovis    79
+<p>Griffin    68</p>
 
-Pteranodon    79
+<p>Andrewsarchus    67</p>
 
-Basilisk    78
+<p>Astrodelphis    67</p>
 
-Basilosaurus    75
+<p>Daeodon    67</p>
 
-Megachelon    74
+<p>Desmodus    67</p>
 
-Gasbags    72
+<p>Megatherium    67</p>
 
-Griffin    68
+<p>Spino    67</p>
 
-Andrewsarchus    67
+<p>Tapejara    67</p>
 
-Astrodelphis    67
+<p>Tropeognathus    67</p>
 
-Daeodon    67
+<p>Paraceratherium    66</p>
 
-Desmodus    67
+<p>Carbonemys    64</p>
 
-Megatherium    67
+<p>Mammoth    62</p>
 
-Spino    67
+<p>Direwolf    58</p>
 
-Tapejara    67
+<p>Allosaurus    53</p>
 
-Tropeognathus    67
+<p>Baryonyx    52</p>
 
-Paraceratherium    66
+<p>Ferox    51</p>
 
-Carbonemys    64
+<p>Jerboa    51</p>
 
-Mammoth    62
+<p>Karkinos    51</p>
 
-Direwolf    58
+<p>Thylacoleo    51</p>
 
-Allosaurus    53
+<p>Roll Rat    46</p>
 
-Baryonyx    52
+<p>Snow Owl    46</p>
 
-Ferox    51
+<p>Woolly Rhino    40</p>
 
-Jerboa    51
+<p>Megalodon    38</p>
 
-Karkinos    51
+<p>Bloodstalker    36</p>
 
-Thylacoleo    51
+<p>Purlovia    33</p>
 
-Roll Rat    46
+<p>Troodon    33</p>
 
-Snow Owl    46
+<p>Velonasaur    33</p>
 
-Woolly Rhino    40
+<p>Maewing    32</p>
 
-Megalodon    38
+<p>Procoptodon    32</p>
 
-Bloodstalker    36
+<p>Stegosaurus    30</p>
 
-Purlovia    33
+<p>Sinomacrops    29</p>
 
-Troodon    33
+<p>Amargasaurus    24</p>
 
-Velonasaur    33
+<p>Deinonychus    24</p>
 
-Maewing    32
+<p>Ferox (Large)    24</p>
 
-Procoptodon    32
+<p>Triceratops    24</p>
 
-Stegosaurus    30
+<p>Arthropluera    21</p>
 
-Sinomacrops    29
+<p>Anglerfish    18</p>
 
-Amargasaurus    24
+<p>Lymantria    16</p>
 
-Deinonychus    24
+<p>Parasaur    15</p>
 
-Ferox (Large)    24
+<p>Noglin    8</p>
 
-Triceratops    24
-
-Arthropluera    21
-
-Anglerfish    18
-
-Lymantria    16
-
-Parasaur    15
-
-Noglin    8
-
-Bulbdog    6</p>
+<p>Bulbdog    6</p>
         </div>
     </div>
 </div>
@@ -382,22 +464,781 @@ Bulbdog    6</p>
 <div id="settings" class="content-section">
     <div class="section-container">
         <div class="settings-grid">
-            <img src="img/sett1.jpg" alt="Setting 1">
-            <img src="img/sett3.jpg" alt="Setting 2">
-            <img src="img/sett2.jpg" alt="Setting 3">
+            <img src="img/sett1.jpg" alt="Setting 1" class="zoomable-image"/>
+            <img src="img/sett2.jpg" alt="Setting 2" class="zoomable-image"/>
+            <img src="img/sett3.jpg" alt="Setting 3" class="zoomable-image"/>
         </div>
     </div>
+</div>
+
+<div id="zoom-overlay" class="zoom-overlay">
+    <span class="zoom-close">&times;</span>
+    <img class="zoom-content" id="zoomed-image">
 </div>
 
 <div id="ini" class="content-section">
     <div class="section-container">
         <div class="ini-section">
-            <h3>Configuration 1 hard</h3>
-            <img src="img/BaseDeviceProfiles.ini" alt="Ini 1">
+            <h3>Configuration 1 soft</h3>
+            <pre  class="mutagen-box">
+[DeviceProfiles]
++DeviceProfileNameAndTypes=Windows,Windows
++DeviceProfileNameAndTypes=WindowsNoEditor,WindowsNoEditor
++DeviceProfileNameAndTypes=WindowsServer,WindowsServer
++DeviceProfileNameAndTypes=IOS,IOS
++DeviceProfileNameAndTypes=iPad2,IOS
++DeviceProfileNameAndTypes=iPad3,IOS
++DeviceProfileNameAndTypes=iPad4,IOS
++DeviceProfileNameAndTypes=iPadAir,IOS
++DeviceProfileNameAndTypes=iPadMini,IOS
++DeviceProfileNameAndTypes=iPadMini2,IOS
++DeviceProfileNameAndTypes=iPhone4,IOS
++DeviceProfileNameAndTypes=iPhone4S,IOS
++DeviceProfileNameAndTypes=iPhone5,IOS
++DeviceProfileNameAndTypes=iPhone5S,IOS
++DeviceProfileNameAndTypes=iPodTouch5,IOS
++DeviceProfileNameAndTypes=iPhone6,IOS
++DeviceProfileNameAndTypes=iPhone6Plus,IOS
++DeviceProfileNameAndTypes=Android,Android
++DeviceProfileNameAndTypes=PS4,PS4
++DeviceProfileNameAndTypes=XboxOne,XboxOne
++DeviceProfileNameAndTypes=HTML5,HTML5
++DeviceProfileNameAndTypes=Mac,Mac
++DeviceProfileNameAndTypes=MacNoEditor,MacNoEditor
++DeviceProfileNameAndTypes=MacServer,MacServer
++DeviceProfileNameAndTypes=WinRT,WinRT
++DeviceProfileNameAndTypes=Linux,Linux
++DeviceProfileNameAndTypes=LinuxNoEditor,LinuxNoEditor
++DeviceProfileNameAndTypes=LinuxServer,LinuxServer
+
+[Windows DeviceProfile]
+DeviceType=Windows
++CVars=foliage.UseOcclusionType=0
+
++CVars=X.MaxCPUParticlesPerEmitter=1
+
++CVars=ShowFlag.Materials=0
++CVars=r.CustomDepth=0
+
++CVars=ShowFlag.LightComplexity=0
++CVars=ShowFlag.LightShafts=0
++CVars=ShowFlag.ShaderComplexity=0
++CVars=ShowFlag.Refraction=0
+
++CVars=bDisablePhysXHardwareSupport=True
++CVars=bFirstRun=False
+
++CVars=FogDensity=0.0
++CVars=NearClipPlane=12.0
+
++CVars=ShowFlag.AmbientOcclusion=0
++CVars=ShowFlag.AntiAliasing=0
++CVars=ShowFlag.Atmosphere=0
++CVars=ShowFlag.AtmosphericFog=0
++CVars=ShowFlag.AudioRadius=0
++CVars=ShowFlag.BSP=0
++CVars=ShowFlag.BSPSplit=0
++CVars=ShowFlag.BSPTriangles=0
++CVars=ShowFlag.BillboardSprites=0
++CVars=ShowFlag.Brushes=0
++CVars=ShowFlag.BuilderBrush=0
++CVars=ShowFlag.CameraAspectRatioBars=0
++CVars=ShowFlag.CameraFrustums=0
++CVars=ShowFlag.CameraImperfections=0
++CVars=ShowFlag.CameraInterpolation=0
+S+CVars=howFlag.CameraSafeFrames=0
++CVars=ShowFlag.ColorGrading=0
++CVars=ShowFlag.CompositeEditorPrimitives=0
++CVars=ShowFlag.Constraints=0
++CVars=ShowFlag.Cover=0
++CVars=ShowFlag.Decals=0
++CVars=ShowFlag.DeferredLighting=0
++CVars=ShowFlag.DepthOfField=0
++CVars=ShowFlag.Diffuse=0
++CVars=ShowFlag.DirectLighting=0
++CVars=ShowFlag.DirectionalLights=0
++CVars=ShowFlag.DistanceCulledPrimitives=0
++CVars=ShowFlag.DistanceFieldAO=0
++CVars=ShowFlag.DynamicShadows=0
++CVars=ShowFlag.Editor=0
++CVars=ShowFlag.EyeAdaptation=0
++CVars=ShowFlag.fog=1
++CVars=ShowFlag.Game=0
++CVars=ShowFlag.LOD=0
++CVars=ShowFlag.Landscape=0
++CVars=ShowFlag.LargeVertices=0
++CVars=ShowFlag.LensFlares=0
++CVars=ShowFlag.LevelColoration=0
++CVars=ShowFlag.LightInfluences=0
++CVars=ShowFlag.LightMapDensity=0
++CVars=ShowFlag.LightRadius=0
++CVars=ShowFlag.Lighting=0
++CVars=ShowFlag.LpvLightingOnly=0
++CVars=ShowFlag.MeshEdges=0
++CVars=ShowFlag.MotionBlur=0
++CVars=ShowFlag.OnScreenDebug=0
++CVars=ShowFlag.OverrideDiffuseAndSpecular=0
++CVars=ShowFlag.Paper2DSprites=0
++CVars=ShowFlag.Particles=0
++CVars=ShowFlag.Pivot=0
++CVars=ShowFlag.PointLights=0
++CVars=ShowFlag.PostProcessMaterial=0
++CVars=ShowFlag.PostProcessing=0
++CVars=ShowFlag.PrecomputedVisibility=0
++CVars=ShowFlag.PreviewShadowsIndicator=0
++CVars=ShowFlag.ReflectionEnvironment=0
++CVars=ShowFlag.ReflectionOverride=0
++CVars=ShowFlag.SelectionOutline=0
++CVars=ShowFlag.ShadowFrustums=0
++CVars=ShowFlag.ShadowsFromEditorHiddenActors=0
++CVars=ShowFlag.SkeletalMeshes=0
++CVars=ShowFlag.SkyLighting=0
++CVars=ShowFlag.Snap=0
++CVars=ShowFlag.Specular=0
++CVars=ShowFlag.SpotLights=0
++CVars=ShowFlag.StaticMeshes=0
++CVars=ShowFlag.StationaryLightOverlap=0
++CVars=ShowFlag.StereoRendering=0
++CVars=ShowFlag.SubsurfaceScattering=0
++CVars=ShowFlag.TemporalAA=0
++CVars=ShowFlag.Tessellation=0
++CVars=ShowFlag.TestImage=0
++CVars=ShowFlag.TextRender=0
++CVars=ShowFlag.TexturedLightProfiles=0
++CVars=ShowFlag.Tonemapper=0
++CVars=ShowFlag.Translucency=0
++CVars=ShowFlag.VectorFields=0
++CVars=ShowFlag.VertexColors=0
++CVars=ShowFlag.Vignette=0
++CVars=ShowFlag.VisualizeAdaptiveDOF=0
++CVars=ShowFlag.VisualizeBuffer=0
++CVars=ShowFlag.VisualizeDOF=0
++CVars=ShowFlag.VisualizeDistanceFieldAO=0
++CVars=ShowFlag.VisualizeHDR=0
++CVars=ShowFlag.VisualizeLPV=0
++CVars=ShowFlag.VisualizeLightCulling=0
++CVars=ShowFlag.VisualizeMotionBlur=0
++CVars=ShowFlag.VisualizeOutOfBoundsPixels=0
++CVars=ShowFlag.VisualizeSSR=0
++CVars=ShowFlag.VisualizeSenses=0
++CVars=ShowFlag.Wireframe=0
++CVars=ShowFloatingDamageText=True
+
+TEXTUREGROUP_Character=(MinLODSize=1,MaxLODSize=4,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_CharacterNormalMap=(MinLODSize=1,MaxLODSize=4,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_CharacterSpecular=(MinLODSize=1,MaxLODSize=4,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Cinematic=(MinLODSize=1,MaxLODSize=128,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Effects=(MinLODSize=1,MaxLODSize=128,LODBias=0,MinMagFilter=linear,MipFilter=point)
+TEXTUREGROUP_EffectsNotFiltered=(MinLODSize=1,MaxLODSize=128,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Lightmap=(MinLODSize=1,MaxLODSize=8,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_MobileFlattened=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_RenderTarget=(MinLODSize=1,MaxLODSize=128,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Shadowmap=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point,NumStreamedMips=3)
+TEXTUREGROUP_Skybox=(MinLODSize=1,MaxLODSize=256,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Terrain_Heightmap=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Terrain_Weightmap=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_UI=(MinLODSize=1,MaxLODSize=256,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Vehicle=(MinLODSize=1,MaxLODSize=256,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_VehicleNormalMap=(MinLODSize=1,MaxLODSize=256,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_VehicleSpecular=(MinLODSize=1,MaxLODSize=256,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_Weapon=(MinLODSize=1,MaxLODSize=64,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_WeaponNormalMap=(MinLODSize=1,MaxLODSize=64,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_WeaponSpecular=(MinLODSize=1,MaxLODSize=64,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_World=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_WorldNormalMap=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+TEXTUREGROUP_WorldSpecular=(MinLODSize=1,MaxLODSize=2,LODBias=0,MinMagFilter=aniso,MipFilter=point)
+
++CVars=r.AOTrimOldRecordsFraction=0
++CVars=r.AmbientOcclusionLevels=0
++CVars=r.Atmosphere=0
++CVars=r.BloomQuality=0
++CVars=r.ClearWithExcludeRects=0
++CVars=r.CompileShadersForDevelopment=0
++CVars=r.DefaultFeature.AmbientOcclusion=False
++CVars=r.DefaultFeature.AntiAliasing=0
++CVars=r.DefaultFeature.AutoExposure=False
++CVars=r.DefaultFeature.Bloom=False
++CVars=r.DefaultFeature.LensFlare=False
++CVars=r.DefaultFeature.MotionBlur=False
++CVars=r.DepthOfFieldQuality=0
++CVars=r.DetailMode=0
++CVars=r.EarlyZPass=0
++CVars=r.ExposureOffset=0.3
++CVars=r.HZBOcclusion=0
++CVars=r.LensFlareQuality=0
++CVars=r.LightFunctionQuality=0
++CVars=r.LightShaftQuality=0
++CVars=r.LightShafts=0
++CVars=r.MaxAnisotropy=0
++CVars=r.MotionBlurQuality=0
++CVars=r.OneFrameThreadLag=1
++CVars=r.PostProcessAAQuality=0
++CVars=r.ReflectionEnvironment=0
++CVars=r.RefractionQuality=0
++CVars=r.SSAOSmartBlur=0
++CVars=r.SSR.Quality=0
++CVars=r.SSS.SampleSet=0
++CVars=r.SSS.Scale=0
++CVars=r.SceneColorFringe.Max=0
++CVars=r.SceneColorFringeQuality=0
++CVars=r.Shadow.CSM.MaxCascades=1
++CVars=r.Shadow.CSM.TransitionScale=0
++CVars=r.Shadow.DistanceScale=0.1
++CVars=r.Shadow.MaxResolution=2
++CVars=r.Shadow.MinResolution=2
++CVars=r.Shadow.RadiusThreshold=0.1
++CVars=r.ShadowQuality=0
++CVars=r.TonemapperQuality=0
++CVars=r.TriangleOrderOptimization=1
++CVars=r.TrueSkyQuality=0
++CVars=r.UpsampleQuality=0
++CVars=r.ViewDistanceScale=0
+[WindowsNoEditor DeviceProfile]
+DeviceType=WindowsNoEditor
+BaseProfileName=Windows
+
+[WindowsServer DeviceProfile]
+DeviceType=WindowsServer
+BaseProfileName=Windows
+
+[IOS DeviceProfile]
+DeviceType=IOS
+BaseProfileName=
++CVars=r.BloomQuality=0
++CVars=r.DepthOfFieldQuality=0
++CVars=r.LightShaftQuality=0
++CVars=r.RefractionQuality=0
+
+[iPad2 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPad3 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPad4 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPadAir DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.BloomQuality=1
+
+[iPadMini DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPadMini2 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=iPadAir
+
+[iPhone4 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone4S DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone5 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone5S DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.MobileContentScaleFactor=2
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
+
+[iPodTouch5 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone6 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.MobileContentScaleFactor=0
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
+
+[iPhone6Plus DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.MobileContentScaleFactor=0
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
+
+[Android DeviceProfile]
+DeviceType=Android
+BaseProfileName=
++CVars=r.MobileContentScaleFactor=1
++CVars=r.BloomQuality=0
++CVars=r.DepthOfFieldQuality=0
++CVars=r.LightShaftQuality=0
++CVars=r.RefractionQuality=0
+
+[Android_Low DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android
++CVars=r.MobileContentScaleFactor=0.5
+
+[Android_Mid DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android
++CVars=r.BloomQuality=1
++CVars=r.MobileContentScaleFactor=0.8
+
+[Android_High DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
++CVars=r.MobileContentScaleFactor=1.0
+
+[Android_Unrecognized DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_Mid
+
+[Android_Adreno320 DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_Mid
+
+;This offset needs to be set for the mosaic fallback to work on Galaxy S4 (SAMSUNG-IGH-I337)
+;+CVars=r.DemosaicVposOffset=0.5
+
+[Android_Adreno330 DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_High
+
+[Android_Adreno330_Ver53 DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_Adreno330
++CVars=r.DisjointTimerQueries=1
+
+[PS4 DeviceProfile]
+DeviceType=PS4
+BaseProfileName=
+
+[XboxOne DeviceProfile]
+DeviceType=XboxOne
+BaseProfileName=
+; we output 10:10:10, not 8:8:8 so we don't need color quantization
++CVars=r.TonemapperQuality=0
+; For SSAO we rely on TemporalAA (with a randomized sample pattern over time) so we can use less samples
++CVars=r.AmbientOcclusionSampleSetQuality=0
+; less passes, and no upsampling as even upsampling costs some performance
++CVars=r.AmbientOcclusionLevels=1
+; larger radius to compensate for fewer passes
++CVars=r.AmbientOcclusionRadiusScale=2
+
+
+[HTML5 DeviceProfile]
+DeviceType=HTML5
+BaseProfileName=
++CVars=r.RefractionQuality=0
+
+[Mac DeviceProfile]
+DeviceType=Mac
+BaseProfileName=
+
+[MacNoEditor DeviceProfile]
+DeviceType=MacNoEditor
+BaseProfileName=Mac
+
+[MacServer DeviceProfile]
+DeviceType=MacServer
+BaseProfileName=Mac
+
+[WinRT DeviceProfile]
+DeviceType=WinRT
+BaseProfileName=
+
+[Linux DeviceProfile]
+DeviceType=Linux
+BaseProfileName=
+MeshLODSettings=
+TextureLODSettings=
+
+[LinuxNoEditor DeviceProfile]
+DeviceType=LinuxNoEditor
+BaseProfileName=Linux
+MeshLODSettings=
+TextureLODSettings=
+
+[LinuxServer DeviceProfile]
+DeviceType=LinuxServer
+BaseProfileName=Linux
+MeshLODSettings=
+TextureLODSettings=
+            </pre>
         </div>
         <div class="ini-section">
             <h3>Configuration 2 hard</h3>
-            <img src="img/BaseDeviceProfiles.ini" alt="Ini 2">
+            <pre class="mutagen-box">
+[DeviceProfiles]
++DeviceProfileNameAndTypes=Windows,Windows
++DeviceProfileNameAndTypes=WindowsNoEditor,WindowsNoEditor
++DeviceProfileNameAndTypes=WindowsServer,WindowsServer
++DeviceProfileNameAndTypes=IOS,IOS
++DeviceProfileNameAndTypes=iPad2,IOS
++DeviceProfileNameAndTypes=iPad3,IOS
++DeviceProfileNameAndTypes=iPad4,IOS
++DeviceProfileNameAndTypes=iPadAir,IOS
++DeviceProfileNameAndTypes=iPadMini,IOS
++DeviceProfileNameAndTypes=iPadMini2,IOS
++DeviceProfileNameAndTypes=iPhone4,IOS
++DeviceProfileNameAndTypes=iPhone4S,IOS
++DeviceProfileNameAndTypes=iPhone5,IOS
++DeviceProfileNameAndTypes=iPhone5S,IOS
++DeviceProfileNameAndTypes=iPodTouch5,IOS
++DeviceProfileNameAndTypes=iPhone6,IOS
++DeviceProfileNameAndTypes=iPhone6Plus,IOS
++DeviceProfileNameAndTypes=Android,Android
++DeviceProfileNameAndTypes=PS4,PS4
++DeviceProfileNameAndTypes=XboxOne,XboxOne
++DeviceProfileNameAndTypes=HTML5,HTML5
++DeviceProfileNameAndTypes=Mac,Mac
++DeviceProfileNameAndTypes=MacNoEditor,MacNoEditor
++DeviceProfileNameAndTypes=MacServer,MacServer
++DeviceProfileNameAndTypes=WinRT,WinRT
++DeviceProfileNameAndTypes=Linux,Linux
++DeviceProfileNameAndTypes=LinuxNoEditor,LinuxNoEditor
++DeviceProfileNameAndTypes=LinuxServer,LinuxServer
+
+[Windows DeviceProfile]
+DeviceType=Windows
++CVars=FrameRateCap=240
++CVars=FrameRateMinimum=144
++CVars=MaxES2PixelShaderAdditiveComplexityCount=45
++CVars=MaxPixelShaderAdditiveComplexityCount=128
++CVars=MaxSmoothedFrameRate=240
++CVars=MinDesiredFrameRate=70
++CVars=MinSmoothedFrameRate=5
++CVars=NearClipPlane=12.0
++CVars=ShowFlag.AmbientOcclusion=0
++CVars=ShowFlag.AntiAliasing=0
++CVars=ShowFlag.Atmosphere=0
++CVars=ShowFlag.AudioRadius=0
++CVars=ShowFlag.BSP=0
++CVars=ShowFlag.BSPSplit=0
++CVars=ShowFlag.BSPTriangles=0
++CVars=ShowFlag.BillboardSprites=0
++CVars=ShowFlag.Brushes=0
++CVars=ShowFlag.BuilderBrush=0
++CVars=ShowFlag.CameraAspectRatioBars=0
++CVars=ShowFlag.CameraFrustums=0
++CVars=ShowFlag.CameraImperfections=0
++CVars=ShowFlag.CameraInterpolation=0
++CVars=ShowFlag.CameraSafeFrames=0
++CVars=ShowFlag.ColorGrading=0
++CVars=ShowFlag.CompositeEditorPrimitives=0
++CVars=ShowFlag.Constraints=0
++CVars=ShowFlag.Cover=0
++CVars=ShowFlag.Decals=0
++CVars=ShowFlag.DeferredLighting=0
++CVars=ShowFlag.DepthOfField=0
++CVars=ShowFlag.DirectLighting=0
++CVars=ShowFlag.DirectionalLights=0
++CVars=ShowFlag.DistanceCulledPrimitives=0
++CVars=ShowFlag.DistanceFieldAO=0
++CVars=ShowFlag.DynamicShadows=0
++CVars=ShowFlag.Editor=0
++CVars=ShowFlag.EyeAdaptation=0
++CVars=ShowFlag.LOD=0
++CVars=ShowFlag.Landscape=0
++CVars=ShowFlag.LargeVertices=0
++CVars=ShowFlag.LensFlares=0
++CVars=ShowFlag.LightComplexity=0
++CVars=ShowFlag.LevelColoration=0
++CVars=ShowFlag.LightInfluences=0
++CVars=ShowFlag.LpvLightingOnly=0
++CVars=ShowFlag.MeshEdges=0
++CVars=ShowFlag.MotionBlur=0
++CVars=ShowFlag.OverrideDiffuseAndSpecular=0
++CVars=ShowFlag.Paper2DSprites=0
++CVars=ShowFlag.Pivot=0
++CVars=ShowFlag.PointLights=0
++CVars=ShowFlag.PostProcessMaterial=0
++CVars=ShowFlag.PostProcessing=0
++CVars=ShowFlag.PrecomputedVisibility=0
++CVars=ShowFlag.PreviewShadowsIndicator=0
++CVars=ShowFlag.ShaderComplexity=0
++CVars=ShowFlag.ShadowFrustums=0
++CVars=ShowFlag.ShadowsFromEditorHiddenActors=0
++CVars=ShowFlag.SkeletalMeshes=0
++CVars=ShowFlag.SkyLighting=0
++CVars=ShowFlag.Snap=0
++CVars=ShowFlag.Specular=0
++CVars=ShowFlag.StationaryLightOverlap=0
++CVars=ShowFlag.StereoRendering=0
++CVars=ShowFlag.TemporalAA=0
++CVars=ShowFlag.TestImage=0
++CVars=ShowFlag.TextRender=0
++CVars=ShowFlag.TexturedLightProfiles=0
++CVars=ShowFlag.Tonemapper=0
++CVars=ShowFlag.VectorFields=0
++CVars=ShowFlag.VertexColors=0
++CVars=ShowFlag.Vignette=0
++CVars=ShowFlag.VisualizeAdaptiveDOF=0
++CVars=ShowFlag.VisualizeBuffer=0
++CVars=ShowFlag.VisualizeDOF=0
++CVars=ShowFlag.VisualizeDistanceFieldAO=0
++CVars=ShowFlag.VisualizeHDR=0
++CVars=ShowFlag.VisualizeLPV=0
++CVars=ShowFlag.VisualizeLightCulling=0
++CVars=ShowFlag.VisualizeMotionBlur=0
++CVars=ShowFlag.VisualizeOutOfBoundsPixels=0
++CVars=ShowFlag.VisualizeSSR=0
++CVars=ShowFlag.VisualizeSenses=0
++CVars=ShowFlag.VolumeLightingSamples=0
++CVars=ShowFlag.Wireframe=0
++CVars=ShowFlag.Materials=0
++CVars=ShowFlag.Tessellation=0
++CVars=r.AOTrimOldRecordsFraction=0
++CVars=r.AmbientOcclusionLevels=0
++CVars=r.Atmosphere=0
++CVars=r.BloomQuality=0
++CVars=r.CustomDepth=0
++CVars=r.DefaultFeature.AmbientOcclusion=False
++CVars=r.DefaultFeature.AntiAliasing=0
++CVars=r.DefaultFeature.AutoExposure=False
++CVars=r.DefaultFeature.Bloom=False
++CVars=r.DefaultFeature.LensFlare=False
++CVars=r.DefaultFeature.MotionBlur=False
++CVars=r.DepthOfFieldQuality=0
++CVars=r.DetailMode=0
++CVars=r.EarlyZPass=0
++CVars=r.ExposureOffset=0.3
++CVars=r.HZBOcclusion=0
++CVars=r.LensFlareQuality=0
++CVars=r.LightFunctionQuality=0
++CVars=r.LightShaftQuality=0
++CVars=r.LightShafts=0
++CVars=r.MaxAnisotropy=0
++CVars=r.MotionBlurQuality=0
++CVars=r.PostProcessAAQuality=0
++CVars=r.SSAOSmartBlur=0
++CVars=r.SSR.Quality=0
++CVars=r.SSS.SampleSet=0
++CVars=r.SSS.Scale=0
++CVars=r.SceneColorFringe.Max=0
++CVars=r.SceneColorFringeQuality=0
++CVars=r.TrueSkyQuality=0
++CVars=r.UpsampleQuality=0
++CVars=r.ViewDistanceScale=0
++CVars=r.oneframethreadlag=1
++CVars=t.maxfps=240
++CVars=bDisablePhysXHardwareSupport=True
++CVars=bFirstRun=False
++CVars=bSmoothFrameRate=true
+[WindowsNoEditor DeviceProfile]
+DeviceType=WindowsNoEditor
+BaseProfileName=Windows
+
+[WindowsServer DeviceProfile]
+DeviceType=WindowsServer
+BaseProfileName=Windows
+
+[IOS DeviceProfile]
+DeviceType=IOS
+BaseProfileName=
++CVars=r.BloomQuality=0
++CVars=r.DepthOfFieldQuality=0
++CVars=r.LightShaftQuality=0
++CVars=r.RefractionQuality=0
+
+[iPad2 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPad3 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPad4 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPadAir DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.BloomQuality=1
+
+[iPadMini DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPadMini2 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=iPadAir
+
+[iPhone4 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone4S DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone5 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone5S DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.MobileContentScaleFactor=2
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
+
+[iPodTouch5 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.RenderTargetSwitchWorkaround=1
+
+[iPhone6 DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.MobileContentScaleFactor=0
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
+
+[iPhone6Plus DeviceProfile]
+DeviceType=IOS
+BaseProfileName=IOS
++CVars=r.MobileContentScaleFactor=0
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
+
+[Android DeviceProfile]
+DeviceType=Android
+BaseProfileName=
++CVars=r.MobileContentScaleFactor=1
++CVars=r.BloomQuality=0
++CVars=r.DepthOfFieldQuality=0
++CVars=r.LightShaftQuality=0
++CVars=r.RefractionQuality=0
+
+[Android_Low DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android
++CVars=r.MobileContentScaleFactor=0.5
+
+[Android_Mid DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android
++CVars=r.BloomQuality=1
++CVars=r.MobileContentScaleFactor=0.8
+
+[Android_High DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android
++CVars=r.BloomQuality=1
++CVars=r.DepthOfFieldQuality=1
++CVars=r.LightShaftQuality=1
++CVars=r.MobileContentScaleFactor=1.0
+
+[Android_Unrecognized DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_Mid
+
+[Android_Adreno320 DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_Mid
+
+;This offset needs to be set for the mosaic fallback to work on Galaxy S4 (SAMSUNG-IGH-I337)
+;+CVars=r.DemosaicVposOffset=0.5
+
+[Android_Adreno330 DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_High
+
+[Android_Adreno330_Ver53 DeviceProfile]
+DeviceType=Android
+BaseProfileName=Android_Adreno330
++CVars=r.DisjointTimerQueries=1
+
+[PS4 DeviceProfile]
+DeviceType=PS4
+BaseProfileName=
+
+[XboxOne DeviceProfile]
+DeviceType=XboxOne
+BaseProfileName=
+; we output 10:10:10, not 8:8:8 so we don't need color quantization
++CVars=r.TonemapperQuality=0
+; For SSAO we rely on TemporalAA (with a randomized sample pattern over time) so we can use less samples
++CVars=r.AmbientOcclusionSampleSetQuality=0
+; less passes, and no upsampling as even upsampling costs some performance
++CVars=r.AmbientOcclusionLevels=1
+; larger radius to compensate for fewer passes
++CVars=r.AmbientOcclusionRadiusScale=2
+
+
+[HTML5 DeviceProfile]
+DeviceType=HTML5
+BaseProfileName=
++CVars=r.RefractionQuality=0
+
+[Mac DeviceProfile]
+DeviceType=Mac
+BaseProfileName=
+
+[MacNoEditor DeviceProfile]
+DeviceType=MacNoEditor
+BaseProfileName=Mac
+
+[MacServer DeviceProfile]
+DeviceType=MacServer
+BaseProfileName=Mac
+
+[WinRT DeviceProfile]
+DeviceType=WinRT
+BaseProfileName=
+
+[Linux DeviceProfile]
+DeviceType=Linux
+BaseProfileName=
+MeshLODSettings=
+TextureLODSettings=
+
+[LinuxNoEditor DeviceProfile]
+DeviceType=LinuxNoEditor
+BaseProfileName=Linux
+MeshLODSettings=
+TextureLODSettings=
+
+[LinuxServer DeviceProfile]
+DeviceType=LinuxServer
+BaseProfileName=Linux
+MeshLODSettings=
+TextureLODSettings=
+            </pre>
         </div>
     </div>
 </div>
@@ -417,11 +1258,36 @@ Bulbdog    6</p>
 
 <div id="arena" class="content-section">
     <div class="section-container">
-        <p class="arena-links">Rejoignez-nous sur <a href="https://discord.gg/eENwBDkhN7" target="_blank">Discord</a> ou visitez <a href="https://www.twitch.tv/bafavftnn" target="_blank">Twitch</a> pour plus d'informations. IP du serveur disponible sur Discord.</p>
+        <p class="réseaux">Rejoignez-moi sur <a href="https://www.youtube.com/@frimex4mx333" target="_blank">Youtube</a> ou visitez <a href="https://www.twitch.tv/bafavftnn" target="_blank">Twitch</a> pour plus d'informations. IP du serveur disponible sur Discord.</p>
     </div>
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        localStorage.clear();
+        const images = document.querySelectorAll('.zoomable-image');
+        const overlay = document.getElementById('zoom-overlay');
+        const zoomedImage = document.getElementById('zoomed-image');
+        const closeButton = document.querySelector('.zoom-close');
+
+        images.forEach(image => {
+            image.addEventListener('click', function() {
+                overlay.style.display = 'block';
+                zoomedImage.src = this.src;
+            });
+        });
+
+        closeButton.addEventListener('click', function() {
+            overlay.style.display = 'none';
+        });
+
+        overlay.addEventListener('click', function(event) {
+            if (event.target === overlay) {
+                overlay.style.display = 'none';
+            }
+        });
+    });
+
     const tabs = document.querySelectorAll('.tabs button');
     const sections = document.querySelectorAll('.content-section');
     const home = document.getElementById('home');
