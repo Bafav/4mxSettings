@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <title>4mxSettings</title>
 <style>
     :root {
-        --bg-color: #000;
+        --bg-color: #0e0e0e;
         --primary-color: #a020f0;
-        --text-color: #fff;
+        --text-color: #e0d8ff;
     }
     body {
         margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Poppins', sans-serif;
         background: var(--bg-color);
         color: var(--text-color);
     }
@@ -52,18 +53,33 @@
         margin-bottom: 2rem;
     }
     .tabs button {
+        position: relative;
         background: none;
         border: 1px solid var(--primary-color);
         color: var(--primary-color);
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.5rem;
         cursor: pointer;
-        border-radius: 4px;
-        transition: background 0.3s, color 0.3s;
+        border-radius: 999px;
+        overflow: hidden;
+        transition: transform 0.3s, color 0.3s;
     }
-    .tabs button.active,
-    .tabs button:hover {
-        background: var(--primary-color);
-        color: var(--bg-color);
+    .tabs button::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, var(--primary-color), #530d82);
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: -1;
+    }
+    .tabs button:hover::before,
+    .tabs button.active::before {
+        opacity: 1;
+    }
+    .tabs button:hover,
+    .tabs button.active {
+        transform: scale(1.1);
+        color: var(--text-color);
     }
     .content-section {
         display: none;
@@ -71,6 +87,33 @@
     }
     .content-section.active {
         display: block;
+    }
+    #home {
+        padding: 3rem 1rem;
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+    }
+    #home h2 {
+        font-size: 2.5rem;
+        margin: 0 0 2rem;
+        animation: slideDown 0.8s ease-out;
+    }
+    .networks {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .networks a svg {
+        width: 64px;
+        height: 64px;
+        fill: var(--text-color);
+        transition: transform 0.3s, filter 0.3s;
+    }
+    .networks a:hover svg {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 6px var(--primary-color));
+        fill: var(--primary-color);
     }
     .section-container {
         padding: 1rem;
@@ -84,6 +127,10 @@
     }
     @keyframes slideIn {
         from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideDown {
+        from { transform: translateY(-20px); opacity: 0; }
         to { transform: translateY(0); opacity: 1; }
     }
     img.placeholder {
@@ -147,8 +194,24 @@
         </a>
     </div>
 </div>
+
+<div id="home">
+    <h2>Bienvenue sur 4mxSettings !</h2>
+    <div class="networks">
+        <a href="https://www.youtube.com/@frimex4mx333" target="_blank" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.8-1.5-.8-1.9-.9C17.3 2.5 12 2.5 12 2.5h-.1s-5.3 0-8.8.5c-.4 0-1.2.1-1.9.9C.6 4.6.5 6.2.5 6.2S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.6.8 2.3c.7.8 1.6.8 2 1 1.5.1 6.7.5 8.7.5 0 0 5.4 0 8.9-.5.4 0 1.2-.1 1.9-.9.6-.7.8-2.3.8-2.3s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.7 13.8V8.3l5.2 2.7-5.2 2.8z"/></svg>
+        </a>
+        <a href="https://discord.gg/eENwBDkhN7" target="_blank" aria-label="Discord">
+            <svg viewBox="0 0 245 240"><path d="M104.4 104.1c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path d="M189.5 20h-134C24.4 20 0 44.5 0 74.3v92.5C0 196.5 24.4 221 55.5 221h113l-5.3-18.6 12.8 11.9 12.1 11.2L245 240V74.3c0-29.8-24.4-54.3-55.5-54.3zM163.7 167s-5-6-9.1-11.4c18.1-5.1 25-16.3 25-16.3-5.7 3.7-11.1 6.3-15.9 8.1-6.9 2.9-13.5 4.8-20 5.9-13.2 2.5-25.2 1.8-35.7-.1-7.8-1.5-14.5-3.6-20.1-5.9-3.1-1.2-6.5-2.8-9.9-4.8-.4-.2-.8-.3-1.2-.5-.3-.2-.5-.3-.8-.5-3.6-2-5.7-3.4-5.7-3.4s6.6 11 24 16c-4.1 5.5-9.2 11.9-9.2 11.9-30.4-.9-41.9-21-41.9-21 0-44.5 19.8-80.6 19.8-80.6 19.8-14.9 38.6-14.5 38.6-14.5l1.4 1.7c-24.8 7.1-36.3 18-36.3 18s3 0 8.1.6c14.7 0 26.5 9 26.5 9 11.2-6.3 26.4-9 42-9 15.6 0 30.8 2.7 42 9 0 0 11.8-9 26.5-9 5 0 8.1-.6 8.1-.6s-11.5-10.9-36.3-18l1-1.7s18.9-.4 38.6 14.5c0 0 19.8 36.1 19.8 80.6 0 0-11.5 20.1-42 21z"/></svg>
+        </a>
+        <a href="https://steamcommunity.com" target="_blank" aria-label="Steam">
+            <svg viewBox="0 0 512 512"><path d="M496 256c0-132.3-107.7-240-240-240S16 123.7 16 256s107.7 240 240 240c65.5 0 124.9-26.4 168.4-69.6l-48.7-18.9c-25.1 21.5-58 34.5-94.7 34.5-78.9 0-143-64.1-143-143 0-7.8.6-15.5 1.8-23l54.3 22.8c3.2 52 47.5 93.2 100.7 93.2 55.1 0 100-44.9 100-100s-44.9-100-100-100c-44.6 0-82.4 29.7-95.3 70.4l-57.8-24.3C172.1 122 210.9 96 256 96c88.4 0 160 71.6 160 160 0 30.5-8.6 59-23.5 83.3l47.9 18.6C488 314.4 496 286.7 496 256z"/></svg>
+        </a>
+    </div>
+</div>
+
 <div class="tabs">
-    <button data-target="maps" class="active">Maps</button>
+    <button data-target="maps">Maps</button>
     <button data-target="mutagen">Mutagen Infos</button>
     <button data-target="settings">Settings</button>
     <button data-target="ini">Ini</button>
@@ -156,11 +219,11 @@
     <button data-target="arena">Arena IP</button>
 </div>
 
-<div id="maps" class="content-section active">
+<div id="maps" class="content-section">
     <div class="section-container">
         <script>
-            for(let i=1;i<=13;i++){
-                document.write('<img src="https://via.placeholder.com/600x300?text=Map+'+i+'" class="placeholder" alt="Map '+i+'">');
+            for(let i=1;i<=10;i++){
+                document.write('<img src="img/file+'+i+'.jpg" class="placeholder" alt="Map '+i+'">');
                 document.write('<p style="animation:fadeIn 0.5s ease-out;">Texte pour Map '+i+'</p>');
             }
         </script>
@@ -170,7 +233,148 @@
 <div id="mutagen" class="content-section">
     <div class="section-container">
         <div class="mutagen-box">
-            <p>Informations détaillées sur le mutagène. Ce texte est présenté dans un conteneur semi-transparent avec une animation douce.</p>
+            <p>
+Astrocetus    99
+
+Giganotosaurus    99
+
+Quetzal    98
+
+Shadowmane    95
+
+Managarmr    94
+
+Therizinosaur    94
+
+Yutyrannus    94
+
+Ankylosaurus    93
+
+Reaper King    93
+
+Mosasaurus    88
+
+Rock Elemental    88
+
+Rex    87
+
+Tusoteuthis    87
+
+Crystal Wyvern    85
+
+Megalania    85
+
+Castoroides    84
+
+Otter    84
+
+Doedicurus    83
+
+Magmasaur    82
+
+Phoenix    82
+
+Rock Drake    82
+
+Voidwyrm    82
+
+Wyvern    82
+
+Mantis    79
+
+Ovis    79
+
+Pteranodon    79
+
+Basilisk    78
+
+Basilosaurus    75
+
+Megachelon    74
+
+Gasbags    72
+
+Griffin    68
+
+Andrewsarchus    67
+
+Astrodelphis    67
+
+Daeodon    67
+
+Desmodus    67
+
+Megatherium    67
+
+Spino    67
+
+Tapejara    67
+
+Tropeognathus    67
+
+Paraceratherium    66
+
+Carbonemys    64
+
+Mammoth    62
+
+Direwolf    58
+
+Allosaurus    53
+
+Baryonyx    52
+
+Ferox    51
+
+Jerboa    51
+
+Karkinos    51
+
+Thylacoleo    51
+
+Roll Rat    46
+
+Snow Owl    46
+
+Woolly Rhino    40
+
+Megalodon    38
+
+Bloodstalker    36
+
+Purlovia    33
+
+Troodon    33
+
+Velonasaur    33
+
+Maewing    32
+
+Procoptodon    32
+
+Stegosaurus    30
+
+Sinomacrops    29
+
+Amargasaurus    24
+
+Deinonychus    24
+
+Ferox (Large)    24
+
+Triceratops    24
+
+Arthropluera    21
+
+Anglerfish    18
+
+Lymantria    16
+
+Parasaur    15
+
+Noglin    8
+
+Bulbdog    6</p>
         </div>
     </div>
 </div>
@@ -178,9 +382,9 @@
 <div id="settings" class="content-section">
     <div class="section-container">
         <div class="settings-grid">
-            <img src="https://via.placeholder.com/400x250?text=Setting+1" alt="Setting 1">
-            <img src="https://via.placeholder.com/400x250?text=Setting+2" alt="Setting 2">
-            <img src="https://via.placeholder.com/400x250?text=Setting+3" alt="Setting 3">
+            <img src="img/sett1.jpg" alt="Setting 1">
+            <img src="img/sett3.jpg" alt="Setting 2">
+            <img src="img/sett2.jpg" alt="Setting 3">
         </div>
     </div>
 </div>
@@ -188,12 +392,12 @@
 <div id="ini" class="content-section">
     <div class="section-container">
         <div class="ini-section">
-            <h3>Configuration 1</h3>
-            <img src="https://via.placeholder.com/400x250?text=Ini+1" alt="Ini 1">
+            <h3>Configuration 1 hard</h3>
+            <img src="img/BaseDeviceProfiles.ini" alt="Ini 1">
         </div>
         <div class="ini-section">
-            <h3>Configuration 2</h3>
-            <img src="https://via.placeholder.com/400x250?text=Ini+2" alt="Ini 2">
+            <h3>Configuration 2 hard</h3>
+            <img src="img/BaseDeviceProfiles.ini" alt="Ini 2">
         </div>
     </div>
 </div>
@@ -201,12 +405,12 @@
 <div id="boss" class="content-section">
     <div class="section-container">
         <div class="boss-section">
-            <h3>Boss 1</h3>
-            <img src="https://via.placeholder.com/400x250?text=Boss+1" alt="Boss 1">
+            <h3>Boss rag </h3>
+            <img src="img/bossab.jpg" alt="Boss 1">
         </div>
         <div class="boss-section">
-            <h3>Boss 2</h3>
-            <img src="https://via.placeholder.com/400x250?text=Boss+2" alt="Boss 2">
+            <h3>Boss ab </h3>
+            <img src="img/bossrag.jpg" alt="Boss 2">
         </div>
     </div>
 </div>
@@ -220,29 +424,27 @@
 <script>
     const tabs = document.querySelectorAll('.tabs button');
     const sections = document.querySelectorAll('.content-section');
+    const home = document.getElementById('home');
+
+    function showSection(id){
+        tabs.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        home.style.display = 'none';
+        const btn = [...tabs].find(b => b.dataset.target === id);
+        if(btn) btn.classList.add('active');
+        const sec = document.getElementById(id);
+        if(sec) sec.classList.add('active');
+        localStorage.setItem('activeTab', id);
+    }
+
     const last = localStorage.getItem('activeTab');
     if(last){
-        document.querySelector('.tabs button.active').classList.remove('active');
-        document.getElementById(last).classList.add('active');
-        document.querySelector(`#${last}`).classList.add('active');
-        tabs.forEach(btn => {
-            if(btn.dataset.target === last){
-                btn.classList.add('active');
-            } else {
-                document.getElementById(btn.dataset.target).classList.remove('active');
-            }
-        });
+        showSection(last);
     }
+
     tabs.forEach(btn => {
-        btn.addEventListener('click', () => {
-            tabs.forEach(b => b.classList.remove('active'));
-            sections.forEach(sec => sec.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById(btn.dataset.target).classList.add('active');
-            localStorage.setItem('activeTab', btn.dataset.target);
-        });
+        btn.addEventListener('click', () => showSection(btn.dataset.target));
     });
 </script>
 </body>
 </html>
-
