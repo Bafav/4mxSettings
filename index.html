@@ -16,7 +16,24 @@
         font-family: 'Poppins', sans-serif;
         background: var(--bg-color);
         color: var(--text-color);
+        position: relative;
     }
+
+    body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle, rgba(160, 32, 240, 0.4) 20%, transparent 22%),
+                radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 22%),
+                radial-gradient(circle, rgba(128, 128, 128, 0.3) 20%, transparent 22%);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px, 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+    
     h1 {
         margin: 0;
         font-size: 2rem;
@@ -1252,6 +1269,14 @@ TextureLODSettings=
         <div class="boss-section">
             <h3>Boss ab </h3>
             <img src="img/bossrag.jpg" alt="Boss 2">
+        </div>
+                <div class="boss-section">
+            <h3>Boss se </h3>
+            <img src="img/boss3.jpg" alt="Boss 3">
+        </div>
+                <div class="boss-section">
+            <h3>Boss ab </h3>
+            <img src="img/boss4.jpg" alt="Boss 4">
         </div>
     </div>
 </div>
