@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4mxSettings</title>
+<style>
+    :root {
+        --bg-color: #000;
+        --primary-color: #a020f0;
+        --text-color: #fff;
+    }
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+    h1 {
+        margin: 0;
+        font-size: 2rem;
+        padding: 1rem;
+        text-align: center;
+        color: var(--primary-color);
+        animation: fadeIn 1s ease-out;
+    }
+    .top-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo-bar {
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+    }
+    .logo-bar a svg {
+        width: 32px;
+        height: 32px;
+        fill: var(--primary-color);
+        transition: transform 0.3s, fill 0.3s;
+    }
+    .logo-bar a:hover svg {
+        transform: scale(1.2);
+        fill: #e0b3ff;
+    }
+    .tabs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    .tabs button {
+        background: none;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s, color 0.3s;
+    }
+    .tabs button.active,
+    .tabs button:hover {
+        background: var(--primary-color);
+        color: var(--bg-color);
+    }
+    .content-section {
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .content-section.active {
+        display: block;
+    }
+    .section-container {
+        padding: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideIn {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    img.placeholder {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 1rem;
+        animation: slideIn 0.5s ease-out;
+    }
+    .mutagen-box {
+        background: rgba(160, 32, 240, 0.2);
+        padding: 1rem;
+        border-left: 4px solid var(--primary-color);
+        animation: fadeIn 0.5s ease-out;
+    }
+    .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        justify-items: center;
+    }
+    .settings-grid img {
+        width: 100%;
+        height: auto;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .ini-section, .boss-section {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    .ini-section img, .boss-section img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        animation: slideIn 0.5s ease-out;
+    }
+    .arena-links a {
+        color: var(--primary-color);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--primary-color);
+        transition: color 0.3s;
+    }
+    .arena-links a:hover {
+        color: #e0b3ff;
+    }
+</style>
+</head>
+<body>
+<div class="top-bar">
+    <h1>4mxSettings</h1>
+    <div class="logo-bar">
+        <a href="https://www.youtube.com/@frimex4mx333" target="_blank" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.8-1.5-.8-1.9-.9C17.3 2.5 12 2.5 12 2.5h-.1s-5.3 0-8.8.5c-.4 0-1.2.1-1.9.9C.6 4.6.5 6.2.5 6.2S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.6.8 2.3c.7.8 1.6.8 2 1 1.5.1 6.7.5 8.7.5 0 0 5.4 0 8.9-.5.4 0 1.2-.1 1.9-.9.6-.7.8-2.3.8-2.3s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.7 13.8V8.3l5.2 2.7-5.2 2.8z"/></svg>
+        </a>
+        <a href="https://discord.gg/eENwBDkhN7" target="_blank" aria-label="Discord">
+            <svg viewBox="0 0 245 240"><path d="M104.4 104.1c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path d="M189.5 20h-134C24.4 20 0 44.5 0 74.3v92.5C0 196.5 24.4 221 55.5 221h113l-5.3-18.6 12.8 11.9 12.1 11.2L245 240V74.3c0-29.8-24.4-54.3-55.5-54.3zM163.7 167s-5-6-9.1-11.4c18.1-5.1 25-16.3 25-16.3-5.7 3.7-11.1 6.3-15.9 8.1-6.9 2.9-13.5 4.8-20 5.9-13.2 2.5-25.2 1.8-35.7-.1-7.8-1.5-14.5-3.6-20.1-5.9-3.1-1.2-6.5-2.8-9.9-4.8-.4-.2-.8-.3-1.2-.5-.3-.2-.5-.3-.8-.5-3.6-2-5.7-3.4-5.7-3.4s6.6 11 24 16c-4.1 5.5-9.2 11.9-9.2 11.9-30.4-.9-41.9-21-41.9-21 0-44.5 19.8-80.6 19.8-80.6 19.8-14.9 38.6-14.5 38.6-14.5l1.4 1.7c-24.8 7.1-36.3 18-36.3 18s3 0 8.1.6c14.7 0 26.5 9 26.5 9 11.2-6.3 26.4-9 42-9 15.6 0 30.8 2.7 42 9 0 0 11.8-9 26.5-9 5 0 8.1-.6 8.1-.6s-11.5-10.9-36.3-18l1-1.7s18.9-.4 38.6 14.5c0 0 19.8 36.1 19.8 80.6 0 0-11.5 20.1-42 21z"/></svg>
+        </a>
+        <a href="https://www.twitch.tv/bafavftnn" target="_blank" aria-label="Twitch">
+            <svg viewBox="0 0 512 512"><path d="M80 0L28 82v362h134v68h68l68-68h82l116-116V0H80zm353 275l-58 58h-82l-68 68v-68H134V58h299v217z"/><path d="M351 116h-58v116h58V116zm-111 0h-58v116h58V116z"/></svg>
+        </a>
+    </div>
+</div>
+<div class="tabs">
+    <button data-target="maps" class="active">Maps</button>
+    <button data-target="mutagen">Mutagen Infos</button>
+    <button data-target="settings">Settings</button>
+    <button data-target="ini">Ini</button>
+    <button data-target="boss">Boss Tributes</button>
+    <button data-target="arena">Arena IP</button>
+</div>
+
+<div id="maps" class="content-section active">
+    <div class="section-container">
+        <script>
+            for(let i=1;i<=13;i++){
+                document.write('<img src="https://via.placeholder.com/600x300?text=Map+'+i+'" class="placeholder" alt="Map '+i+'">');
+                document.write('<p style="animation:fadeIn 0.5s ease-out;">Texte pour Map '+i+'</p>');
+            }
+        </script>
+    </div>
+</div>
+
+<div id="mutagen" class="content-section">
+    <div class="section-container">
+        <div class="mutagen-box">
+            <p>Informations détaillées sur le mutagène. Ce texte est présenté dans un conteneur semi-transparent avec une animation douce.</p>
+        </div>
+    </div>
+</div>
+
+<div id="settings" class="content-section">
+    <div class="section-container">
+        <div class="settings-grid">
+            <img src="https://via.placeholder.com/400x250?text=Setting+1" alt="Setting 1">
+            <img src="https://via.placeholder.com/400x250?text=Setting+2" alt="Setting 2">
+            <img src="https://via.placeholder.com/400x250?text=Setting+3" alt="Setting 3">
+        </div>
+    </div>
+</div>
+
+<div id="ini" class="content-section">
+    <div class="section-container">
+        <div class="ini-section">
+            <h3>Configuration 1</h3>
+            <img src="https://via.placeholder.com/400x250?text=Ini+1" alt="Ini 1">
+        </div>
+        <div class="ini-section">
+            <h3>Configuration 2</h3>
+            <img src="https://via.placeholder.com/400x250?text=Ini+2" alt="Ini 2">
+        </div>
+    </div>
+</div>
+
+<div id="boss" class="content-section">
+    <div class="section-container">
+        <div class="boss-section">
+            <h3>Boss 1</h3>
+            <img src="https://via.placeholder.com/400x250?text=Boss+1" alt="Boss 1">
+        </div>
+        <div class="boss-section">
+            <h3>Boss 2</h3>
+            <img src="https://via.placeholder.com/400x250?text=Boss+2" alt="Boss 2">
+        </div>
+    </div>
+</div>
+
+<div id="arena" class="content-section">
+    <div class="section-container">
+        <p class="arena-links">Rejoignez-nous sur <a href="https://discord.gg/eENwBDkhN7" target="_blank">Discord</a> ou visitez <a href="https://www.twitch.tv/bafavftnn" target="_blank">Twitch</a> pour plus d'informations. IP du serveur disponible sur Discord.</p>
+    </div>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll('.tabs button');
+    const sections = document.querySelectorAll('.content-section');
+    const last = localStorage.getItem('activeTab');
+    if(last){
+        document.querySelector('.tabs button.active').classList.remove('active');
+        document.getElementById(last).classList.add('active');
+        document.querySelector(`#${last}`).classList.add('active');
+        tabs.forEach(btn => {
+            if(btn.dataset.target === last){
+                btn.classList.add('active');
+            } else {
+                document.getElementById(btn.dataset.target).classList.remove('active');
+            }
+        });
+    }
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabs.forEach(b => b.classList.remove('active'));
+            sections.forEach(sec => sec.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.target).classList.add('active');
+            localStorage.setItem('activeTab', btn.dataset.target);
+        });
+    });
+</script>
+</body>
+</html>
+
